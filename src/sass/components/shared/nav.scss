@@ -1,0 +1,47 @@
+.nav {
+  background: var(--800);
+  display: flex;
+  align-items: center;
+
+  &__hamburger {
+    height: 56px;
+    width: 56px;
+    background: var(--700);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+    }
+  }
+
+  &__file-name {
+    padding-left: 24px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--100);
+    font-size: 15px;
+    font-weight: 400;
+  }
+
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  &__save {
+    background: var(--orange);
+    height: 40px;
+    width: 40px;
+    margin-right: 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

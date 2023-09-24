@@ -2,10 +2,13 @@
   background: var(--800);
   display: flex;
   align-items: center;
+  gap: 24px;
+  height: 56px;
+  padding-right: 8px;
 
-  &__hamburger {
-    height: 56px;
-    width: 56px;
+  &__toggler {
+    height: 100%;
+    aspect-ratio: 1/1;
     background: var(--700);
     display: flex;
     align-items: center;
@@ -17,18 +20,34 @@
     }
   }
 
+  &__logo {
+    display: none;
+  }
+
   &__file-name {
-    padding-left: 24px;
     flex: 1;
     display: flex;
     align-items: center;
     gap: 15px;
-    color: var(--100);
-    font-size: 15px;
-    font-weight: 400;
-  }
 
-  > div {
+    > div {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      span {
+        &:first-child {
+          display: none;
+        }
+
+        &:last-child {
+          color: var(--100);
+          font-size: 15px;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+  &__cta {
     display: flex;
     align-items: center;
     gap: 24px;
@@ -38,10 +57,61 @@
     background: var(--orange);
     height: 40px;
     width: 40px;
-    margin-right: 8px;
     border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+}
+
+@media (min-width: $md) {
+  .nav {
+    height: 72px;
+    padding-right: 16px;
+
+    &__toggler {
+      img {
+        width: 28px;
+        height: 28px;
+      }
+    }
+
+    &__save {
+      width: auto;
+      padding: 0 16px;
+      gap: 8px;
+
+      &:hover {
+        background: var(--orange-hover);
+      }
+
+      &::after {
+        content: "Save Changes";
+        color: var(--100);
+        line-height: 1;
+        font-size: 15px;
+      }
+    }
+
+    &__logo {
+      display: flex;
+      align-items: center;
+      padding-right: 24px;
+      border-right: 1px solid var(--600);
+      height: 40px;
+    }
+
+    &__file-name {
+      > div {
+        span {
+          &:first-child {
+            font-size: 13px;
+            font-weight: 300;
+            color: var(--500);
+            display: block;
+          }
+        }
+      }
+    }
   }
 }

@@ -1,7 +1,7 @@
 import Nav from "@/components/shared/Nav";
 import "../sass/main.scss";
 import type { Metadata } from "next";
-import { roboto_slab } from "@/lib/fonts";
+import { roboto } from "@/lib/fonts";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={roboto_slab.className}>
+      <body className={roboto.className}>
         <Nav />
         {children}
       </body>

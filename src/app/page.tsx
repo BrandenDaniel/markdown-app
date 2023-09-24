@@ -1,5 +1,12 @@
+import MarkdownInput from "@/components/MarkdownInput";
+import MarkdownOutput from "@/components/MarkdownOutput";
 import React from "react";
 
 export default function page() {
-  return <main className="container">page</main>;
+  return (
+    <main className="">
+      <MarkdownInput></MarkdownInput>
+      <MarkdownOutput></MarkdownOutput>
+    </main>
+  );
 }

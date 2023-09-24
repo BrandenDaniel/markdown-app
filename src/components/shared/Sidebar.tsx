@@ -27,7 +27,7 @@ export default function Sidebar({
         isSidebarActive ? "sidebar--open" : ""
       }`}
     >
-      <Image src={Logo} alt="Markdoen logo" />
+      <Image src={Logo} alt="Markdown logo" />
       <p>MY DOCUMENTS</p>
       <button>+ New Document</button>
 

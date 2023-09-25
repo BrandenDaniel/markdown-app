@@ -16,7 +16,9 @@ export default function MarkdownInput() {
     textarea.value = currentFile.content;
   }, []);
 
-  const handleContentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {};
+  const handleContentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setCurrentFile({ ...currentFile, content: e.currentTarget.value });
+  };
 
   return (
     <section className="markdown markdown--input">

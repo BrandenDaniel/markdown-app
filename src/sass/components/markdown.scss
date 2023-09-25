@@ -6,6 +6,10 @@
     display: flex;
     flex-direction: column;
 
+    &--output {
+      pointer-events: none;
+    }
+
     textarea {
       flex: 1;
       border: none;

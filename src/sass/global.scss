@@ -29,13 +29,17 @@ $xxl: 1400px;
 .container {
   // max-width: 1440px;
   // margin: 0 auto;
-  padding: 16px;
+  // padding: 16px;
 }
 
 button {
   border: none;
   padding: 0;
   background: none;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     cursor: pointer;
@@ -54,8 +58,8 @@ nav {
 
 html,
 body {
+  overflow: hidden;
   &:has(.sidebar--open) {
-    overflow: hidden;
     nav,
     main {
       margin-left: 250px;

@@ -12,7 +12,7 @@ import DarkModeIcon from "../../assets/icon-dark-mode.svg";
 import LightModeIcon from "../../assets/icon-light-mode.svg";
 import DarkModeIconActive from "../../assets/icon-dark-mode-active.svg";
 import LightModeIconActive from "../../assets/icon-light-mode-active.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Sidebar({
   isSidebarActive,
@@ -20,6 +20,11 @@ export default function Sidebar({
   isSidebarActive: boolean;
 }) {
   const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    const body = document.body;
+    body.setAttribute("data-theme", theme);
+  }, [theme]);
 
   return (
     <aside

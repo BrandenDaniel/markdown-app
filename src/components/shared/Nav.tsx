@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import Sidebar from "./Sidebar";
+import { useState } from "react";
 
 // icons
 import HamburgerIcon from "../../assets/icon-menu.svg";
@@ -12,8 +14,6 @@ import Logo from "../../assets/logo.svg";
 
 //fonts
 import { roboto } from "@/lib/fonts";
-import Sidebar from "./Sidebar";
-import { useState } from "react";
 
 export default function Nav() {
   const [isSidebarActive, setIsSidebarActive] = useState(false);
@@ -38,7 +38,7 @@ export default function Nav() {
           <Image src={FileIcon} alt="document" />
           <div className={roboto.className}>
             <span>Document Name</span>
-            <span>example.md</span>
+            <input type="text" value="example" />
           </div>
         </div>
         <div className="nav__cta">

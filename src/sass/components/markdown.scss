@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  .markdown {
+    height: calc(100dvh - 56px);
+    display: flex;
+    flex-direction: column;
+
+    textarea {
+      flex: 1;
+      border: none;
+      resize: none;
+      padding: 16px;
+      background: var(--100);
+      color: var(--700);
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+@media (min-width: $md) {
+  .container {
+    flex-direction: row;
+
+    .markdown {
+      height: calc(100dvh - 72px);
+      flex: 1;
+
+      &--input {
+        border-right: 1px solid var(--300);
+      }
+    }
+  }
+}

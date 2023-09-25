@@ -1,6 +1,8 @@
 @import "./global.scss";
+@import "./dark-theme.scss";
 
 //Components
 @import "./components/shared/nav.scss";
 @import "./components/shared/sidebar.scss";
 @import "./components/viewToggle.scss";
+@import "./components/markdown.scss";

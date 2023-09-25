@@ -10,7 +10,8 @@
       pointer-events: none;
     }
 
-    textarea {
+    textarea,
+    .markdown__content {
       flex: 1;
       border: none;
       resize: none;

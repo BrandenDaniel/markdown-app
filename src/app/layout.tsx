@@ -2,6 +2,7 @@ import Nav from "@/components/shared/Nav";
 import "../sass/main.scss";
 import type { Metadata } from "next";
 import { roboto } from "@/lib/fonts";
+import MarkdownInputContextProvider from "@/context/markdown-input-context";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,8 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <Nav />
-        {children}
+        <MarkdownInputContextProvider>
+          <Nav />
+          {children}
+        </MarkdownInputContextProvider>
       </body>
     </html>
   );

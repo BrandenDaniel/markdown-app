@@ -13,6 +13,7 @@ import LightModeIcon from "../../assets/icon-light-mode.svg";
 import DarkModeIconActive from "../../assets/icon-dark-mode-active.svg";
 import LightModeIconActive from "../../assets/icon-light-mode-active.svg";
 import { useState, useEffect } from "react";
+import { useMarkdownInputContext } from "@/context/markdown-input-context";
 
 export default function Sidebar({
   isSidebarActive,
@@ -20,11 +21,45 @@ export default function Sidebar({
   isSidebarActive: boolean;
 }) {
   const [theme, setTheme] = useState("light");
+  const { data, setData } = useMarkdownInputContext();
 
   useEffect(() => {
     const body = document.body;
     body.setAttribute("data-theme", theme);
   }, [theme]);
+
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const currentDate = new Date();
+
+  let day = currentDate.getDate();
+  let month = monthNames[currentDate.getMonth()];
+  let year = currentDate.getFullYear();
+
+  const createNewFile = () => {
+    setData([
+      ...data,
+      {
+        id: data.length + 1,
+        createdAt: `${day} ${month} ${year}`,
+        name: "untitled.md",
+        content: "test",
+      },
+    ]);
+  };
 
   return (
     <aside
@@ -34,23 +69,18 @@ export default function Sidebar({
     >
       <Image src={Logo} alt="Markdown logo" />
       <p>MY DOCUMENTS</p>
-      <button>+ New Document</button>
+      <button onClick={createNewFile}>+ New Document</button>
 
       <div className="sidebar__document">
-        <div className="sidebar__document-item">
-          <Image src={FileIcon} alt="document" />
-          <div>
-            <span>01 April 2022</span>
-            <p>untitled-document.md</p>
+        {data.map((file) => (
+          <div className="sidebar__document-item" key={file.id}>
+            <Image src={FileIcon} alt="document" />
+            <div>
+              <span>{file.createdAt}</span>
+              <button>{file.name}</button>
+            </div>
           </div>
-        </div>
-        <div className="sidebar__document-item">
-          <Image src={FileIcon} alt="document" />
-          <div>
-            <span>01 April 2022</span>
-            <p>untitled-document.md</p>
-          </div>
-        </div>
+        ))}
       </div>
 
       <div className="sidebar__theme-toggle">

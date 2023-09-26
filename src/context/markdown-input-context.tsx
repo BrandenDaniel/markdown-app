@@ -9,6 +9,7 @@ type MarkdownInputContextProviderProps = {
 };
 
 type DataStructure = {
+  id: number;
   createdAt: string;
   name: string;
   content: string;

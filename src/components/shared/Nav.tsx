@@ -14,9 +14,12 @@ import Logo from "../../assets/logo.svg";
 
 //fonts
 import { roboto } from "@/lib/fonts";
+import { useMarkdownInputContext } from "@/context/markdown-input-context";
 
 export default function Nav() {
   const [isSidebarActive, setIsSidebarActive] = useState(false);
+
+  const { currentFile, setCurrentFile } = useMarkdownInputContext();
 
   return (
     <>
@@ -38,7 +41,7 @@ export default function Nav() {
           <Image src={FileIcon} alt="document" />
           <div className={roboto.className}>
             <span>Document Name</span>
-            <input type="text" value="example" />
+            <input type="text" value={currentFile.name} />
           </div>
         </div>
         <div className="nav__cta">

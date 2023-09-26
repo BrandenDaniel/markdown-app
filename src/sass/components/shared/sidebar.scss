@@ -51,9 +51,14 @@
           color: var(--500);
         }
 
-        p {
+        button {
           color: var(--100);
           font-size: 15px;
+          justify-content: flex-start;
+
+          &:hover {
+            color: var(--orange);
+          }
         }
       }
     }

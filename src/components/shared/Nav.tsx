@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Sidebar from "./Sidebar";
-import { useState } from "react";
+import { useState, ChangeEvent, MouseEvent } from "react";
 
 // icons
 import HamburgerIcon from "../../assets/icon-menu.svg";
@@ -19,8 +19,17 @@ import { useMarkdownInputContext } from "@/context/markdown-input-context";
 export default function Nav() {
   const [isSidebarActive, setIsSidebarActive] = useState(false);
 
-  const { currentFile, setCurrentFile } = useMarkdownInputContext();
+  const { currentFile, setCurrentFile, data, setData } =
+    useMarkdownInputContext();
 
+  const handleFileNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setCurrentFile({ ...currentFile, name: e.currentTarget.value });
+  };
+
+  const handleSaveFile = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setData([...data, currentFile]);
+  };
   return (
     <>
       <Sidebar isSidebarActive={isSidebarActive} />
@@ -41,14 +50,18 @@ export default function Nav() {
           <Image src={FileIcon} alt="document" />
           <div className={roboto.className}>
             <span>Document Name</span>
-            <input type="text" value={currentFile.name} />
+            <input
+              type="text"
+              value={currentFile.name}
+              onChange={handleFileNameChange}
+            />
           </div>
         </div>
         <div className="nav__cta">
           <button className="nav__delete">
             <Image src={DeleteIcon} alt="delete markdown" />
           </button>
-          <button className="nav__save">
+          <button className="nav__save" onClick={handleSaveFile}>
             <Image src={SaveIcon} alt="save markdown" />
           </button>
         </div>

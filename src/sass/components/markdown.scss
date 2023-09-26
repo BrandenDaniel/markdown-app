@@ -6,10 +6,6 @@
     display: flex;
     flex-direction: column;
 
-    &--output {
-      pointer-events: none;
-    }
-
     textarea,
     .markdown__content {
       flex: 1;
@@ -18,10 +14,112 @@
       padding: 16px;
       background: var(--100);
       color: var(--700);
+      overflow: auto;
 
       &:focus {
         outline: none;
       }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: var(--700);
+      line-height: normal;
+    }
+
+    h1 {
+      font-size: 32px;
+    }
+
+    h2 {
+      font-size: 28px;
+    }
+
+    h3 {
+      font-size: 24px;
+    }
+
+    h4 {
+      font-size: 20px;
+    }
+
+    h5 {
+      font-size: 16px;
+    }
+
+    h6 {
+      font-size: 14px;
+    }
+
+    p,
+    li,
+    code {
+      color: var(--500);
+      line-height: 1.71;
+      font-size: 14px;
+    }
+    code {
+      color: var(--700);
+    }
+    ul,
+    ol {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      li {
+        display: flex;
+        gap: 8px;
+        padding-left: 24px;
+      }
+    }
+
+    ol {
+      counter-reset: counter;
+      li {
+        counter-increment: counter;
+        &::before {
+          content: counter(counter) ". ";
+        }
+      }
+    }
+
+    ul {
+      li {
+        gap: 16px;
+        &::before {
+          content: "\2022";
+          font-weight: bold;
+          color: var(--orange);
+        }
+      }
+    }
+
+    &__blockquote {
+      background: var(--200);
+      padding: 24px;
+      font-size: 14px;
+      line-height: 1.71;
+      font-weight: 700;
+      border-left: 4px solid var(--orange);
+      border-radius: 4px;
+    }
+
+    &__empty-line {
+      height: 20px;
+    }
+
+    &__codeblock {
+      border-radius: 4px;
+      background: var(--200);
+      padding: 24px;
+      color: var(--700);
     }
   }
 }
@@ -36,6 +134,11 @@
 
       &--input {
         border-right: 1px solid var(--300);
+      }
+
+      textarea,
+      &__content {
+        padding: 24px !important;
       }
     }
   }

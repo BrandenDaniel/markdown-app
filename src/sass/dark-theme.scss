@@ -10,9 +10,32 @@ body[data-theme="dark"] {
     &--input {
       border-color: var(--600);
     }
-    textarea {
-      background: var(--1000);
+    textarea,
+    &__content {
+      background: var(--1000) !important;
       color: var(--400);
+    }
+
+    &__content {
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      code {
+        color: var(--100);
+      }
+
+      p,
+      li {
+        color: var(--400);
+      }
+    }
+    &__blockquote,
+    &__codeblock {
+      background: var(--800);
+      color: var(--100);
     }
   }
 }

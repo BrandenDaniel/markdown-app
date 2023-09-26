@@ -19,10 +19,12 @@ export default function MarkdownOutput() {
   const italic = "*";
   const blockquote = "> ";
   const orderedListPattern = /^\d+\.\s/; // Regular expression to match lines starting with a number followed by a period and space
+  const unorderedListPattern = /^- /;
 
   let lines = rawOutput.split("\n");
   let output: React.ReactNode[] = [];
   let currentOrderedList: React.ReactNode[] | null = null;
+  let currentUnorderedList: React.ReactNode[] | null = null;
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
@@ -82,7 +84,38 @@ export default function MarkdownOutput() {
       );
 
       currentOrderedList = null;
-      i = nextIndex - 1; // Skip processed lines
+      i = nextIndex - 1; // Skip already processed lines
+    } else if (unorderedListPattern.test(line)) {
+      if (!currentUnorderedList) {
+        currentUnorderedList = [];
+      }
+
+      currentUnorderedList.push(
+        <li key={i}>{line.replace(unorderedListPattern, "")}</li>
+      );
+
+      // Check the next line
+      let nextIndex = i + 1;
+      while (nextIndex < lines.length) {
+        const nextLine = lines[nextIndex];
+        if (unorderedListPattern.test(nextLine)) {
+          currentUnorderedList.push(
+            <li key={nextIndex}>
+              {nextLine.replace(unorderedListPattern, "")}
+            </li>
+          );
+          nextIndex++;
+        } else {
+          break;
+        }
+      }
+
+      output.push(<ul key={i}>{currentUnorderedList}</ul>);
+      i = nextIndex - 1; // Skip already processed lines
+
+      currentUnorderedList = null;
+    } else if (line === "") {
+      output.push(<div className="empty-line"></div>);
     } else {
       output.push(<p key={i}>{line}</p>);
     }

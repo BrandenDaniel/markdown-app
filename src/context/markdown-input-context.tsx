@@ -19,6 +19,8 @@ type MarkdownInputContext = {
   setData: React.Dispatch<React.SetStateAction<typeof Data>>;
   currentFile: DataStructure;
   setCurrentFile: React.Dispatch<React.SetStateAction<DataStructure>>;
+  showPreview: boolean;
+  setShowPreview: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const MarkdownInputContext = createContext<MarkdownInputContext | null>(
@@ -31,10 +33,18 @@ export default function MarkdownInputContextProvider({
   const [data, setData] = useState([...Data]);
   const lastFile = data.slice(-1);
   const [currentFile, setCurrentFile] = useState<DataStructure>(lastFile[0]);
+  const [showPreview, setShowPreview] = useState(false);
 
   return (
     <MarkdownInputContext.Provider
-      value={{ data, setData, currentFile, setCurrentFile }}
+      value={{
+        data,
+        setData,
+        currentFile,
+        setCurrentFile,
+        showPreview,
+        setShowPreview,
+      }}
     >
       {children}
     </MarkdownInputContext.Provider>

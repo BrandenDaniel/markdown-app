@@ -134,6 +134,12 @@
 
       &--input {
         border-right: 1px solid var(--300);
+
+        .viewToggle {
+          button {
+            display: none;
+          }
+        }
       }
 
       textarea,

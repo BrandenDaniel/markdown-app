@@ -12,3 +12,38 @@
     font-weight: 500;
   }
 }
+
+.show-preview {
+  .markdown--input {
+    display: none !important;
+  }
+}
+
+.hide-preview {
+  .markdown--output {
+    display: none !important;
+  }
+}
+
+@media (min-width: $md) {
+  .show-preview {
+    .markdown {
+      &--input {
+        display: none !important;
+      }
+
+      &--output {
+        display: flex !important;
+      }
+    }
+  }
+
+  .hide-preview {
+    .markdown {
+      &--input,
+      &--output {
+        display: flex !important;
+      }
+    }
+  }
+}

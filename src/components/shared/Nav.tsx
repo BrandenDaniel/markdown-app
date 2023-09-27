@@ -24,6 +24,7 @@ export default function Nav() {
     setData,
     isSidebarActive,
     setIsSidebarActive,
+    setIsNotifierShown,
   } = useMarkdownInputContext();
 
   const handleFileNameChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -42,7 +43,23 @@ export default function Nav() {
     const updatedData = [...data];
     updatedData[currentFileIndex] = currentFile;
     setData(updatedData);
+    handleNotifier();
   };
+
+  const handleNotifier = () => {
+    setIsNotifierShown(true);
+
+    const displayNotifier = () => {
+      setIsNotifierShown(false);
+    };
+
+    const notifierTimeout = setTimeout(displayNotifier, 4000);
+
+    function clearNotifierTimeout() {
+      clearTimeout(notifierTimeout);
+    }
+  };
+
   return (
     <>
       <Sidebar />

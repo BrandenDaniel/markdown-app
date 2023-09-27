@@ -24,6 +24,8 @@ type MarkdownInputContext = {
   setShowPreview: React.Dispatch<React.SetStateAction<boolean>>;
   isSidebarActive: boolean;
   setIsSidebarActive: React.Dispatch<React.SetStateAction<boolean>>;
+  isNotifierShown: boolean;
+  setIsNotifierShown: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const MarkdownInputContext = createContext<MarkdownInputContext | null>(
@@ -44,6 +46,8 @@ export default function MarkdownInputContextProvider({
   const [showPreview, setShowPreview] = useState(false);
   const [isSidebarActive, setIsSidebarActive] = useState(false);
 
+  const [isNotifierShown, setIsNotifierShown] = useState(false);
+
   useEffect(() => {
     localStorage.setItem("files", JSON.stringify(data));
   }, [data]);
@@ -63,6 +67,8 @@ export default function MarkdownInputContextProvider({
         setShowPreview,
         isSidebarActive,
         setIsSidebarActive,
+        isNotifierShown,
+        setIsNotifierShown,
       }}
     >
       {children}

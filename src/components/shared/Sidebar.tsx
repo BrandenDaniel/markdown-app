@@ -83,7 +83,12 @@ export default function Sidebar() {
             <Image src={FileIcon} alt="document" />
             <div>
               <span>{file.createdAt}</span>
-              <button onClick={handleActiveFile} id={`${file.id}`}>
+              <button
+                onClick={handleActiveFile}
+                id={`${file.id}`}
+                className="sidebar__update"
+                key={file.name}
+              >
                 {file.name}
               </button>
             </div>

@@ -28,7 +28,19 @@ export default function Nav() {
 
   const handleSaveFile = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setData([...data, currentFile]);
+
+    const currentFileIndex = data.findIndex(
+      (file) => file.id === currentFile.id
+    );
+
+    if (currentFileIndex !== -1) {
+      // If the file exists in the data array, update it
+      const updatedData = [...data];
+      updatedData[currentFileIndex] = currentFile;
+
+      // Set the updated data array to the state
+      setData(updatedData);
+    }
   };
   return (
     <>

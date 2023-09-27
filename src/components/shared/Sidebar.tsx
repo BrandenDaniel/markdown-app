@@ -21,7 +21,8 @@ export default function Sidebar({
   isSidebarActive: boolean;
 }) {
   const [theme, setTheme] = useState("light");
-  const { data, setData } = useMarkdownInputContext();
+  const { data, setData, currentFile, setCurrentFile } =
+    useMarkdownInputContext();
 
   useEffect(() => {
     const body = document.body;
@@ -56,10 +57,16 @@ export default function Sidebar({
         id: data.length + 1,
         createdAt: `${day} ${month} ${year}`,
         name: "untitled.md",
-        content: "test",
+        content: "",
       },
     ]);
+
+    const latestFile = data.slice(-1);
+
+    setCurrentFile(latestFile[0]);
   };
+
+  const handleActiveFile = () => {};
 
   return (
     <aside
@@ -77,7 +84,7 @@ export default function Sidebar({
             <Image src={FileIcon} alt="document" />
             <div>
               <span>{file.createdAt}</span>
-              <button>{file.name}</button>
+              <button onClick={handleActiveFile}>{file.name}</button>
             </div>
           </div>
         ))}

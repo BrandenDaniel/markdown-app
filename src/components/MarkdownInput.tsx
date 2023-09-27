@@ -6,15 +6,14 @@ import { roboto_mono } from "@/lib/fonts";
 import { useMarkdownInputContext } from "@/context/markdown-input-context";
 
 export default function MarkdownInput() {
-  const { data, setData, currentFile, setCurrentFile } =
-    useMarkdownInputContext();
+  const { currentFile, setCurrentFile } = useMarkdownInputContext();
 
   useEffect(() => {
     const textarea = document.getElementById(
       "markdown-input"
     )! as HTMLTextAreaElement;
     textarea.value = currentFile.content;
-  }, []);
+  }, [currentFile]);
 
   const handleContentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setCurrentFile({ ...currentFile, content: e.currentTarget.value });

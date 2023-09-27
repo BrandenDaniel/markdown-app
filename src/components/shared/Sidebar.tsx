@@ -12,16 +12,12 @@ import DarkModeIcon from "../../assets/icon-dark-mode.svg";
 import LightModeIcon from "../../assets/icon-light-mode.svg";
 import DarkModeIconActive from "../../assets/icon-dark-mode-active.svg";
 import LightModeIconActive from "../../assets/icon-light-mode-active.svg";
-import { useState, useEffect } from "react";
+import { useState, useEffect, MouseEvent } from "react";
 import { useMarkdownInputContext } from "@/context/markdown-input-context";
 
-export default function Sidebar({
-  isSidebarActive,
-}: {
-  isSidebarActive: boolean;
-}) {
+export default function Sidebar() {
   const [theme, setTheme] = useState("light");
-  const { data, setData, currentFile, setCurrentFile } =
+  const { data, setData, setCurrentFile, isSidebarActive } =
     useMarkdownInputContext();
 
   useEffect(() => {
@@ -52,21 +48,24 @@ export default function Sidebar({
 
   const createNewFile = () => {
     setData([
-      ...data,
       {
         id: data.length + 1,
         createdAt: `${day} ${month} ${year}`,
-        name: "untitled.md",
+        name: "untitled",
         content: "",
       },
+      ...data,
     ]);
 
-    const latestFile = data.slice(-1);
-
-    setCurrentFile(latestFile[0]);
+    setCurrentFile(data[0]);
   };
 
-  const handleActiveFile = () => {};
+  const handleActiveFile = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const id = parseInt(e.currentTarget.id);
+    const getFileIndex = data.findIndex((file) => file.id === id);
+    setCurrentFile(data[getFileIndex]);
+  };
 
   return (
     <aside
@@ -84,7 +83,9 @@ export default function Sidebar({
             <Image src={FileIcon} alt="document" />
             <div>
               <span>{file.createdAt}</span>
-              <button onClick={handleActiveFile}>{file.name}</button>
+              <button onClick={handleActiveFile} id={`${file.id}`}>
+                {file.name}
+              </button>
             </div>
           </div>
         ))}

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Sidebar from "./Sidebar";
-import { useState, ChangeEvent, MouseEvent } from "react";
+import { useState, ChangeEvent, MouseEvent, FormEvent } from "react";
 
 // icons
 import HamburgerIcon from "../../assets/icon-menu.svg";
@@ -17,34 +17,35 @@ import { roboto } from "@/lib/fonts";
 import { useMarkdownInputContext } from "@/context/markdown-input-context";
 
 export default function Nav() {
-  const [isSidebarActive, setIsSidebarActive] = useState(false);
-
-  const { currentFile, setCurrentFile, data, setData } =
-    useMarkdownInputContext();
+  const {
+    currentFile,
+    setCurrentFile,
+    data,
+    setData,
+    isSidebarActive,
+    setIsSidebarActive,
+  } = useMarkdownInputContext();
 
   const handleFileNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCurrentFile({ ...currentFile, name: e.currentTarget.value });
   };
 
-  const handleSaveFile = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleSaveFile = (
+    e: MouseEvent<HTMLButtonElement> | FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault();
 
     const currentFileIndex = data.findIndex(
       (file) => file.id === currentFile.id
     );
 
-    if (currentFileIndex !== -1) {
-      // If the file exists in the data array, update it
-      const updatedData = [...data];
-      updatedData[currentFileIndex] = currentFile;
-
-      // Set the updated data array to the state
-      setData(updatedData);
-    }
+    const updatedData = [...data];
+    updatedData[currentFileIndex] = currentFile;
+    setData(updatedData);
   };
   return (
     <>
-      <Sidebar isSidebarActive={isSidebarActive} />
+      <Sidebar />
       <nav className="nav">
         <button
           className="nav__toggler"
@@ -58,25 +59,27 @@ export default function Nav() {
         <div className="nav__logo">
           <Image src={Logo} alt="Markdown logo" />
         </div>
-        <div className="nav__file-name">
-          <Image src={FileIcon} alt="document" />
-          <div className={roboto.className}>
-            <span>Document Name</span>
-            <input
-              type="text"
-              value={currentFile.name}
-              onChange={handleFileNameChange}
-            />
+        <form onSubmit={handleSaveFile}>
+          <div className="nav__file-name">
+            <Image src={FileIcon} alt="document" />
+            <div className={roboto.className}>
+              <span>Document Name</span>
+              <input
+                type="text"
+                value={currentFile.name}
+                onChange={handleFileNameChange}
+              />
+            </div>
           </div>
-        </div>
-        <div className="nav__cta">
-          <button className="nav__delete">
-            <Image src={DeleteIcon} alt="delete markdown" />
-          </button>
-          <button className="nav__save" onClick={handleSaveFile}>
-            <Image src={SaveIcon} alt="save markdown" />
-          </button>
-        </div>
+          <div className="nav__cta">
+            <button className="nav__delete">
+              <Image src={DeleteIcon} alt="delete markdown" />
+            </button>
+            <button className="nav__save" onClick={handleSaveFile}>
+              <Image src={SaveIcon} alt="save markdown" />
+            </button>
+          </div>
+        </form>
       </nav>
     </>
   );

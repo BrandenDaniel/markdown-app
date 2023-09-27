@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import Data from "../data/data.json";
 
 // Provider elements within
@@ -22,6 +22,8 @@ type MarkdownInputContext = {
   setCurrentFile: React.Dispatch<React.SetStateAction<DataStructure>>;
   showPreview: boolean;
   setShowPreview: React.Dispatch<React.SetStateAction<boolean>>;
+  isSidebarActive: boolean;
+  setIsSidebarActive: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const MarkdownInputContext = createContext<MarkdownInputContext | null>(
@@ -31,10 +33,24 @@ export const MarkdownInputContext = createContext<MarkdownInputContext | null>(
 export default function MarkdownInputContextProvider({
   children,
 }: MarkdownInputContextProviderProps) {
-  const [data, setData] = useState([...Data]);
-  const lastFile = data.slice(-1);
-  const [currentFile, setCurrentFile] = useState<DataStructure>(lastFile[0]);
+  const storedData = localStorage.getItem("files");
+  const storedCurrentFile = localStorage.getItem("currentFile");
+  const [data, setData] = useState(
+    storedData ? JSON.parse(storedData) : [...Data]
+  );
+  const [currentFile, setCurrentFile] = useState<DataStructure>(
+    storedCurrentFile ? JSON.parse(storedCurrentFile) : Data[0]
+  );
   const [showPreview, setShowPreview] = useState(false);
+  const [isSidebarActive, setIsSidebarActive] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("files", JSON.stringify(data));
+  }, [data]);
+
+  useEffect(() => {
+    localStorage.setItem("currentFile", JSON.stringify(currentFile));
+  }, [currentFile]);
 
   return (
     <MarkdownInputContext.Provider
@@ -45,6 +61,8 @@ export default function MarkdownInputContextProvider({
         setCurrentFile,
         showPreview,
         setShowPreview,
+        isSidebarActive,
+        setIsSidebarActive,
       }}
     >
       {children}

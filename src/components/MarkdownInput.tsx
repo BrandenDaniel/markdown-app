@@ -6,7 +6,8 @@ import { roboto_mono } from "@/lib/fonts";
 import { useMarkdownInputContext } from "@/context/markdown-input-context";
 
 export default function MarkdownInput() {
-  const { currentFile, setCurrentFile } = useMarkdownInputContext();
+  const { currentFile, setCurrentFile, setIsSidebarActive } =
+    useMarkdownInputContext();
 
   useEffect(() => {
     const textarea = document.getElementById(
@@ -27,6 +28,7 @@ export default function MarkdownInput() {
         name=""
         className={roboto_mono.className}
         onChange={handleContentChange}
+        onFocus={() => setIsSidebarActive(false)}
       ></textarea>
     </section>
   );

@@ -24,11 +24,17 @@
     display: none;
   }
 
-  &__file-name {
+  form {
     flex: 1;
     display: flex;
     align-items: center;
+  }
+
+  &__file-name {
+    display: flex;
     gap: 15px;
+    align-items: center;
+    flex: 1;
 
     > div {
       display: flex;
@@ -115,6 +121,7 @@
 
     &__file-name {
       > div {
+        flex: 1;
         span {
           font-size: 13px;
           font-weight: 300;
@@ -123,7 +130,7 @@
         }
 
         input {
-          width: 350px;
+          max-width: 300px;
         }
       }
     }

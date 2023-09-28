@@ -53,7 +53,7 @@ export default function Nav() {
       setIsNotifierShown(false);
     };
 
-    const notifierTimeout = setTimeout(displayNotifier, 4000);
+    const notifierTimeout = setTimeout(displayNotifier, 2500);
 
     function clearNotifierTimeout() {
       clearTimeout(notifierTimeout);
@@ -102,6 +102,7 @@ export default function Nav() {
               className="nav__delete"
               type="button"
               onClick={handleOpenDeleteDocModal}
+              disabled={currentFile.id === 1 ? true : false}
             >
               <Image src={DeleteIcon} alt="delete markdown" />
             </button>

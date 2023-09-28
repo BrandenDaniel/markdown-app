@@ -16,6 +16,8 @@ type DataStructure = {
 };
 
 type MarkdownInputContext = {
+  theme: string;
+  setTheme: React.Dispatch<React.SetStateAction<string>>;
   data: typeof Data;
   setData: React.Dispatch<React.SetStateAction<typeof Data>>;
   currentFile: DataStructure;
@@ -37,8 +39,13 @@ export const MarkdownInputContext = createContext<MarkdownInputContext | null>(
 export default function MarkdownInputContextProvider({
   children,
 }: MarkdownInputContextProviderProps) {
+  //stored variables
+  const storedTheme = localStorage.getItem("theme");
   const storedData = localStorage.getItem("files");
   const storedCurrentFile = localStorage.getItem("currentFile");
+
+  //states
+  const [theme, setTheme] = useState(storedTheme ? storedTheme : "light");
   const [data, setData] = useState(
     storedData ? JSON.parse(storedData) : [...Data]
   );
@@ -60,17 +67,20 @@ export default function MarkdownInputContextProvider({
   }, [currentFile]);
 
   useEffect(() => {
-    if (removedFileIndex !== null) {
+    if (removedFileIndex !== null && currentFile.id > 1) {
       let newData = [...data];
       newData.splice(removedFileIndex, 1); // Remove 1 item at index removedFileIndex
       setData(newData);
       setCurrentFile(newData[0]);
+      setRemovedFileIndex(null); // Reset removedFileIndex
     }
   }, [removedFileIndex]);
 
   return (
     <MarkdownInputContext.Provider
       value={{
+        theme,
+        setTheme,
         data,
         setData,
         currentFile,

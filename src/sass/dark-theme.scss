@@ -38,4 +38,17 @@ body[data-theme="dark"] {
       color: var(--100);
     }
   }
+
+  .deleteDocModal {
+    form {
+      background: var(--900);
+      h1 {
+        color: var(--100);
+      }
+
+      p {
+        color: var(--400);
+      }
+    }
+  }
 }

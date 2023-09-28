@@ -16,13 +16,13 @@ import { useState, useEffect, MouseEvent } from "react";
 import { useMarkdownInputContext } from "@/context/markdown-input-context";
 
 export default function Sidebar() {
-  const [theme, setTheme] = useState("light");
-  const { data, setData, setCurrentFile, isSidebarActive } =
+  const { data, setData, setCurrentFile, isSidebarActive, theme, setTheme } =
     useMarkdownInputContext();
 
   useEffect(() => {
     const body = document.body;
     body.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
   }, [theme]);
 
   useEffect(() => {

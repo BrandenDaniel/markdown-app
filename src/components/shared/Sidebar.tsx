@@ -12,12 +12,19 @@ import DarkModeIcon from "../../assets/icon-dark-mode.svg";
 import LightModeIcon from "../../assets/icon-light-mode.svg";
 import DarkModeIconActive from "../../assets/icon-dark-mode-active.svg";
 import LightModeIconActive from "../../assets/icon-light-mode-active.svg";
-import { useState, useEffect, MouseEvent } from "react";
+import { useEffect, MouseEvent } from "react";
 import { useMarkdownInputContext } from "@/context/markdown-input-context";
 
 export default function Sidebar() {
-  const { data, setData, setCurrentFile, isSidebarActive, theme, setTheme } =
-    useMarkdownInputContext();
+  const {
+    data,
+    setData,
+    setCurrentFile,
+    isSidebarActive,
+    setIsSidebarActive,
+    theme,
+    setTheme,
+  } = useMarkdownInputContext();
 
   useEffect(() => {
     const body = document.body;
@@ -67,6 +74,7 @@ export default function Sidebar() {
     const id = parseInt(e.currentTarget.id);
     const getFileIndex = data.findIndex((file) => file.id === id);
     setCurrentFile(data[getFileIndex]);
+    setIsSidebarActive(false);
   };
 
   return (

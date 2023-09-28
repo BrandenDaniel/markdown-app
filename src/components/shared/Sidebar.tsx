@@ -25,6 +25,10 @@ export default function Sidebar() {
     body.setAttribute("data-theme", theme);
   }, [theme]);
 
+  useEffect(() => {
+    setCurrentFile(data[0]);
+  }, [data]);
+
   const monthNames = [
     "January",
     "February",
@@ -51,13 +55,11 @@ export default function Sidebar() {
       {
         id: data.length + 1,
         createdAt: `${day} ${month} ${year}`,
-        name: "untitled",
+        name: `untitled-${data.length}`,
         content: "",
       },
       ...data,
     ]);
-
-    setCurrentFile(data[0]);
   };
 
   const handleActiveFile = (e: MouseEvent<HTMLButtonElement>) => {

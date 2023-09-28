@@ -1,0 +1,51 @@
+.deleteDocModal {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: rgba(20, 22, 26, 0.5);
+  max-width: 100vw;
+  max-height: 100vh;
+  padding: 16px;
+  align-items: center;
+  justify-content: center;
+
+  &[open] {
+    display: flex;
+  }
+
+  form {
+    background: var(--100);
+    width: 100%;
+    max-width: 343px;
+    margin: 0 auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-radius: 4px;
+    h1 {
+      color: var(--700);
+      font-size: 20px;
+    }
+
+    p {
+      font-size: 14px;
+      color: var(--500);
+      line-height: 1.71;
+    }
+
+    button {
+      height: 40px;
+      color: var(--100);
+      background: var(--orange);
+      border-radius: 4px;
+      font-size: 15px;
+
+      &:hover {
+        background: var(--orange-hover);
+      }
+    }
+  }
+}

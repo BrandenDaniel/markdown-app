@@ -1,15 +1,16 @@
 .notifier {
   position: fixed;
-  background: lightgreen;
-  color: var(-700);
+  background: var(--100);
+
+  color: var(--800);
+  background: #a8ffa8;
   top: 15px;
   left: 50%;
   transform: translate(-50%, 0);
   animation: 0.4s notifier-animation ease;
   padding: 12px;
   border-radius: 6px;
-  font-weight: 500;
-  //   border-bottom: 4px solid green;
+  font-weight: 400;
 
   @keyframes notifier-animation {
     0% {

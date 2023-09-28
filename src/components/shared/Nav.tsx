@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Sidebar from "./Sidebar";
-import { useState, ChangeEvent, MouseEvent, FormEvent } from "react";
+import { ChangeEvent, MouseEvent, FormEvent } from "react";
 
 // icons
 import HamburgerIcon from "../../assets/icon-menu.svg";
@@ -60,6 +60,15 @@ export default function Nav() {
     }
   };
 
+  const handleOpenDeleteDocModal = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const modal = document.querySelector(
+      ".deleteDocModal"
+    ) as HTMLDialogElement;
+
+    modal.showModal();
+  };
+
   return (
     <>
       <Sidebar />
@@ -89,10 +98,18 @@ export default function Nav() {
             </div>
           </div>
           <div className="nav__cta">
-            <button className="nav__delete">
+            <button
+              className="nav__delete"
+              type="button"
+              onClick={handleOpenDeleteDocModal}
+            >
               <Image src={DeleteIcon} alt="delete markdown" />
             </button>
-            <button className="nav__save" onClick={handleSaveFile}>
+            <button
+              className="nav__save"
+              onClick={handleSaveFile}
+              type="submit"
+            >
               <Image src={SaveIcon} alt="save markdown" />
             </button>
           </div>

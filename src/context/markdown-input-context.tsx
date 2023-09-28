@@ -20,6 +20,8 @@ type MarkdownInputContext = {
   setData: React.Dispatch<React.SetStateAction<typeof Data>>;
   currentFile: DataStructure;
   setCurrentFile: React.Dispatch<React.SetStateAction<DataStructure>>;
+  removedFileIndex: number | null;
+  setRemovedFileIndex: React.Dispatch<React.SetStateAction<number | null>>;
   showPreview: boolean;
   setShowPreview: React.Dispatch<React.SetStateAction<boolean>>;
   isSidebarActive: boolean;
@@ -43,6 +45,7 @@ export default function MarkdownInputContextProvider({
   const [currentFile, setCurrentFile] = useState<DataStructure>(
     storedCurrentFile ? JSON.parse(storedCurrentFile) : Data[0]
   );
+  const [removedFileIndex, setRemovedFileIndex] = useState<number | null>(null);
   const [showPreview, setShowPreview] = useState(false);
   const [isSidebarActive, setIsSidebarActive] = useState(false);
 
@@ -56,6 +59,15 @@ export default function MarkdownInputContextProvider({
     localStorage.setItem("currentFile", JSON.stringify(currentFile));
   }, [currentFile]);
 
+  useEffect(() => {
+    if (removedFileIndex !== null) {
+      let newData = [...data];
+      newData.splice(removedFileIndex, 1); // Remove 1 item at index removedFileIndex
+      setData(newData);
+      setCurrentFile(newData[0]);
+    }
+  }, [removedFileIndex]);
+
   return (
     <MarkdownInputContext.Provider
       value={{
@@ -63,6 +75,8 @@ export default function MarkdownInputContextProvider({
         setData,
         currentFile,
         setCurrentFile,
+        removedFileIndex,
+        setRemovedFileIndex,
         showPreview,
         setShowPreview,
         isSidebarActive,

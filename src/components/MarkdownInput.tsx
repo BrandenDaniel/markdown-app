@@ -28,7 +28,6 @@ export default function MarkdownInput() {
         name=""
         className={roboto_mono.className}
         onChange={handleContentChange}
-        onFocus={() => setIsSidebarActive(false)}
       ></textarea>
     </section>
   );

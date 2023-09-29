@@ -69,6 +69,7 @@ export default function Sidebar() {
     ];
     setData(newData);
     setCurrentFile(newData[0]);
+    document.getElementById("name-input")?.focus();
   };
 
   const handleActiveFile = (e: MouseEvent<HTMLButtonElement>) => {

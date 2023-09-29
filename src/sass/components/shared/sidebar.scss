@@ -36,6 +36,23 @@
     display: flex;
     flex-direction: column;
     gap: 27px;
+    overflow: auto;
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: var(--1000);
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: var(--700);
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: var(--500);
+    }
+
     &-item {
       display: flex;
       align-items: center;

@@ -51,4 +51,21 @@ body[data-theme="dark"] {
       }
     }
   }
+
+  @media (min-width: $md) {
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: var(--1000);
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: var(--700);
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--500);
+    }
+  }
 }

@@ -13,7 +13,7 @@ import FileIcon from "../../assets/icon-document.svg";
 import Logo from "../../assets/logo.svg";
 
 //fonts
-import { roboto } from "@/lib/fonts";
+import { roboto, roboto_mono } from "@/lib/fonts";
 import { useMarkdownInputContext } from "@/context/markdown-input-context";
 
 export default function Nav() {
@@ -39,7 +39,6 @@ export default function Nav() {
     const currentFileIndex = data.findIndex(
       (file) => file.id === currentFile.id
     );
-
     const updatedData = [...data];
     updatedData[currentFileIndex] = currentFile;
     setData(updatedData);
@@ -48,7 +47,6 @@ export default function Nav() {
 
   const handleNotifier = () => {
     setIsNotifierShown(true);
-
     const displayNotifier = () => {
       setIsNotifierShown(false);
     };
@@ -90,11 +88,24 @@ export default function Nav() {
             <Image src={FileIcon} alt="document" />
             <div className={roboto.className}>
               <span>Document Name</span>
-              <input
-                type="text"
-                value={currentFile.name}
-                onChange={handleFileNameChange}
-              />
+              <div>
+                <input
+                  id="name-input"
+                  type="text"
+                  value={currentFile.name}
+                  onChange={handleFileNameChange}
+                  className={roboto_mono.className}
+                  style={{
+                    width: `${
+                      (
+                        document.getElementById(
+                          "name-input"
+                        ) as HTMLInputElement
+                      )?.value.length
+                    }ch`,
+                  }}
+                />
+              </div>
             </div>
           </div>
           <div className="nav__cta">

@@ -43,20 +43,28 @@
       span {
         display: none;
       }
-      input {
-        color: var(--100);
-        font-size: 15px;
-        font-weight: 400;
-        background: none;
-        border: none;
-        padding: 0;
-        border-bottom: 1px solid transparent;
-        margin-bottom: -1px;
-        width: 75%;
-        caret-color: var(--orange);
-        &:focus {
-          outline: none;
-          border-color: var(--100);
+
+      > div {
+        &::after {
+          content: ".md";
+          color: var(--100);
+          font-size: 15px;
+        }
+
+        input {
+          color: var(--100);
+          font-size: 15px;
+          font-weight: 400;
+          background: none;
+          border: none;
+          padding: 0;
+          border-bottom: 1px solid transparent;
+          margin-bottom: -1px;
+          caret-color: var(--orange);
+          &:focus {
+            outline: none;
+            border-color: var(--100);
+          }
         }
       }
     }
@@ -128,16 +136,11 @@
 
     &__file-name {
       > div {
-        flex: 1;
         span {
           font-size: 13px;
           font-weight: 300;
           color: var(--500);
           display: block;
-        }
-
-        input {
-          max-width: 300px;
         }
       }
     }

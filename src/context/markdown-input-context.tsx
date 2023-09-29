@@ -72,6 +72,7 @@ export default function MarkdownInputContextProvider({
       newData.splice(removedFileIndex, 1); // Remove 1 item at index removedFileIndex
       setData(newData);
       setCurrentFile(newData[0]);
+
       setRemovedFileIndex(null); // Reset removedFileIndex
     }
   }, [removedFileIndex]);

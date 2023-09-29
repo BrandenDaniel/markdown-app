@@ -32,9 +32,9 @@ export default function Sidebar() {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  useEffect(() => {
-    setCurrentFile(data[0]);
-  }, [data]);
+  // useEffect(() => {
+  //   setCurrentFile(data[0]);
+  // }, [data]);
 
   const monthNames = [
     "January",

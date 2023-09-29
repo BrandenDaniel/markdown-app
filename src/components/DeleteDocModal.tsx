@@ -4,11 +4,16 @@ import React, { MouseEvent } from "react";
 
 export default function DeleteDocModal() {
   const { data, currentFile, setRemovedFileIndex } = useMarkdownInputContext();
-  const modal = document.getElementById("modal") as HTMLDialogElement;
+
+  const isDocumentAvailable = typeof localStorage !== "undefined";
+  //stored variables
+  const modal = isDocumentAvailable
+    ? (document.getElementById("modal") as HTMLDialogElement)
+    : null;
 
   const handleCloseModal = (e: MouseEvent<HTMLDialogElement>) => {
     e.preventDefault();
-    modal.close();
+    modal?.close();
   };
 
   const handleDeleteCurrentFIle = (e: MouseEvent<HTMLButtonElement>) => {
@@ -16,7 +21,7 @@ export default function DeleteDocModal() {
     const currentFileId = currentFile.id;
     const getFileIndex = data.findIndex((file) => file.id === currentFileId);
     setRemovedFileIndex(getFileIndex);
-    modal.close();
+    modal?.close();
   };
 
   return (

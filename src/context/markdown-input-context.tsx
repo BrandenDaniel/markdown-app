@@ -39,10 +39,17 @@ export const MarkdownInputContext = createContext<MarkdownInputContext | null>(
 export default function MarkdownInputContextProvider({
   children,
 }: MarkdownInputContextProviderProps) {
+  const isLocalStorageAvailable = typeof localStorage !== "undefined";
   //stored variables
-  const storedTheme = localStorage.getItem("theme");
-  const storedData = localStorage.getItem("files");
-  const storedCurrentFile = localStorage.getItem("currentFile");
+  const storedTheme = isLocalStorageAvailable
+    ? localStorage.getItem("theme")
+    : null;
+  const storedData = isLocalStorageAvailable
+    ? localStorage.getItem("files")
+    : null;
+  const storedCurrentFile = isLocalStorageAvailable
+    ? localStorage.getItem("currentFile")
+    : null;
 
   //states
   const [theme, setTheme] = useState(storedTheme ? storedTheme : "dark");

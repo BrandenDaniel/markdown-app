@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import ViewToggle from "./ViewToggle";
 import { roboto_slab } from "@/lib/fonts";
 import { useMarkdownInputContext } from "@/context/markdown-input-context";
@@ -21,7 +20,6 @@ export default function MarkdownOutput() {
   const orderedListPattern = /^\d+\.\s/;
   const unorderedListPattern = /^- /;
   const codeBlockPattern = /^```/;
-  const anchorLinkPattern = /\[([^\]]+)\]\(([^)]+)\)/g;
 
   let lines = rawOutput.split("\n");
   let output: React.ReactNode[] = [];
@@ -156,7 +154,7 @@ export default function MarkdownOutput() {
           i = nextIndex - 1; // Skip already processed lines
           currentUnorderedList = null;
         } else if (line === "") {
-          output.push(<div className="markdown__empty-line"></div>);
+          output.push(<div className="markdown__empty-line" key={i}></div>);
         } else {
           output.push(
             <p key={i} className="markdown__paragraph">

@@ -95,15 +95,6 @@ export default function Nav() {
                   value={currentFile.name}
                   onChange={handleFileNameChange}
                   className={roboto_mono.className}
-                  style={{
-                    width: `${
-                      (
-                        document.getElementById(
-                          "name-input"
-                        ) as HTMLInputElement
-                      )?.value.length
-                    }ch`,
-                  }}
                 />
               </div>
             </div>

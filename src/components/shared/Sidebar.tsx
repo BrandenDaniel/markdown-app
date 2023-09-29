@@ -58,7 +58,7 @@ export default function Sidebar() {
   let year = currentDate.getFullYear();
 
   const createNewFile = () => {
-    setData([
+    const newData = [
       {
         id: data.length + 1,
         createdAt: `${day} ${month} ${year}`,
@@ -66,7 +66,9 @@ export default function Sidebar() {
         content: "",
       },
       ...data,
-    ]);
+    ];
+    setData(newData);
+    setCurrentFile(newData[0]);
   };
 
   const handleActiveFile = (e: MouseEvent<HTMLButtonElement>) => {

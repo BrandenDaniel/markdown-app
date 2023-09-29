@@ -21,6 +21,7 @@ export default function MarkdownOutput() {
   const orderedListPattern = /^\d+\.\s/;
   const unorderedListPattern = /^- /;
   const codeBlockPattern = /^```/;
+  const anchorLinkPattern = /\[([^\]]+)\]\(([^)]+)\)/g;
 
   let lines = rawOutput.split("\n");
   let output: React.ReactNode[] = [];
@@ -54,7 +55,6 @@ export default function MarkdownOutput() {
         isInsideCodeBlock = true;
       } else {
         const inlineCodeBlocks = line.split(/(`[^`]+`)/);
-
         const contentWithInlineCodeblocks = inlineCodeBlocks.map(
           (part, index) => {
             if (index % 2 === 0) {

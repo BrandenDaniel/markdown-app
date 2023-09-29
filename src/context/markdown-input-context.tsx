@@ -45,7 +45,7 @@ export default function MarkdownInputContextProvider({
   const storedCurrentFile = localStorage.getItem("currentFile");
 
   //states
-  const [theme, setTheme] = useState(storedTheme ? storedTheme : "light");
+  const [theme, setTheme] = useState(storedTheme ? storedTheme : "dark");
   const [data, setData] = useState(
     storedData ? JSON.parse(storedData) : [...Data]
   );
@@ -64,6 +64,8 @@ export default function MarkdownInputContextProvider({
 
   useEffect(() => {
     localStorage.setItem("currentFile", JSON.stringify(currentFile));
+    const nameInput = document.getElementById("name-input") as HTMLInputElement;
+    nameInput.style.width = `${nameInput.value.length}ch`;
   }, [currentFile]);
 
   useEffect(() => {

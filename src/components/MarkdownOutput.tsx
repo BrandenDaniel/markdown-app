@@ -14,8 +14,6 @@ export default function MarkdownOutput() {
   const h4 = "#### ";
   const h5 = "##### ";
   const h6 = "###### ";
-  const bold = "**";
-  const italic = "*";
   const blockquote = "> ";
   const orderedListPattern = /^\d+\.\s/;
   const unorderedListPattern = /^- /;
@@ -78,14 +76,6 @@ export default function MarkdownOutput() {
           output.push(<h5 key={i}>{line.replace(h5, "")}</h5>);
         } else if (line.startsWith(h6)) {
           output.push(<h6 key={i}>{line.replace(h6, "")}</h6>);
-        } else if (line.startsWith(bold) && line.endsWith(bold)) {
-          output.push(<b key={i}>{line.replaceAll(bold, "")}</b>);
-        } else if (
-          line.startsWith(italic) &&
-          !line.startsWith(bold) &&
-          line.endsWith(italic)
-        ) {
-          output.push(<i key={i}>{line.replaceAll(italic, "")}</i>);
         } else if (line.startsWith(blockquote)) {
           output.push(
             <div className="markdown__blockquote" key={i}>

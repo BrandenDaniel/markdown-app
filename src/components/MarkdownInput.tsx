@@ -28,6 +28,7 @@ export default function MarkdownInput() {
         name=""
         className={roboto_mono.className}
         onChange={handleContentChange}
+        placeholder="Begin by typing your markdown here..."
       ></textarea>
     </section>
   );

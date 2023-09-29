@@ -63,7 +63,7 @@ export default function Sidebar() {
         id: data.length + 1,
         createdAt: `${day} ${month} ${year}`,
         name: `untitled-${data.length}`,
-        content: "Begin by typing your markdown here...",
+        content: "",
       },
       ...data,
     ];
